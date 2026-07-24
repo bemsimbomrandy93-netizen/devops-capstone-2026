@@ -14,3 +14,10 @@ def read_root():
 @app.get("/invoices")
 def get_invoices():
     return invoices
+
+@app.get("/invoices/{invoice_id}")
+def get_invoice(invoice_id: int):
+    for inv in invoices:
+        if inv["id"] == invoice_id:
+            return inv
+    return {"error": "Invoice not found"}
